@@ -1,0 +1,276 @@
+
+/*
+@use postcss-write-svg;
+@use postcss-transform-shortcut;
+@use postcss-for;
+@use postcss-each;
+@use postcss-conditionals;
+@use postcss-media-minmax;
+@use postcss-custom-media;
+ */
+
+@import '../css/reset.css';
+@import '../css/milligram.css';
+
+@use postcss-import;
+@use cssnext;
+@use postcss-simple-vars;
+@use postcss-nested;
+@use lost;
+
+
+
+@lost gutter 40px;
+@lost flexbox flex;
+
+:root {
+--fontSize: 1rem;
+--fontWeight: 300;
+--fontFamily: 'Lato';
+--mainColor: #12345678;
+--highlightColor: #4B5166; /* <-- change the color ! */
+--fontSize: 1rem;
+--marginUnit: .6rem;
+
+/* color palette :: https://coolors.co/app/d63c6b-5cc8ff-efefef-292f36-d6d6d6 */
+--white: #efefef;
+--white-alpha: rgba(239, 239, 239, .64);
+--grey: #d6d6d6;
+--gray: var(--grey);
+--black: #292f36;
+--tomato: #9A5786;
+--pure-black: #131313;
+--pure-black-alpha: rgba(19, 19, 19, .64);
+--pure-black-alpha-light: rgba(19, 19, 19, .24);
+--pure-black-alpha-transparent: rgba(19, 19, 19, .12);
+
+--primary: #d63c6b;
+--primary-dk: #c41c4f;
+--accent: #5cc8ff;
+--accent-dk: #00a3f5;
+
+--transition: 300ms;
+--easing: cubic-bezier(1, 1, 1, 1);
+--borderRadius: 3px;
+
+
+--rosequartz: rgb(247, 202, 201);
+--serenity: rgb(146,168,209);
+--white: rgba(255, 255, 255, .5);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  font-size: 16px; /* setting globally for rems */
+}
+
+body {
+  background-color: #F9F9F9;
+  color: #5a5656;
+  font-family: var(--fontFamily);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: var(--fontWeight);
+}
+
+body > section {
+  lost-flex-container: column;
+  overflow: hidden;
+}
+
+.Intro {
+  height: 100vh;
+  width: 100%;
+  background-size: contain;
+}
+
+.Intro-text {
+  lost-column: 9/12;
+  lost-offset: -1.5/12;
+}
+
+
+/********* JOIN FORM */
+/* ***************** */
+.Join {
+  background: var(--tomato);
+}
+
+.Join--form {
+  lost-column: 6/12;
+  lost-offset: -3/12;
+}
+
+/* // TODO: fixme */
+#enter-email {
+  position: relative;
+}
+
+.Join--form form {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  display: block;
+  width: 450px;
+}
+
+.Join--form input {
+  line-height: 80px;
+  width: 100%;
+  font-size: 24px;
+  padding: 0 20px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  color: transparent;
+  font-weight: var(--fontWeight);
+  transition: .3s all ease;
+  font-family: var(--fontFamily);
+  &:focus {
+    outline: none;
+    color: var(--tomato);
+    border: none;
+  }
+}
+
+.Join--form input.full {
+   pointer-events: none !important;
+  width: 0%;
+}
+
+.Join--form .indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 3px;
+  border-radius: var(--borderRadius);
+  background: white;
+  transition: .3s all ease;
+  z-index: 9;
+  font-family: var(--fontFamily);
+  &:after {
+    content: attr(data-content);
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color:  color(var(--tomato) saturation(+30) blackness(+30));
+    transition: inherit;
+    font-size: 24px;
+    z-index: 999;
+    text-align: left;
+  }
+}
+
+
+.Join--form input:focus + .indicator {
+  height: 100%;
+  &:after {
+    color: white;
+    font-weight: var(--fontWeight);
+  }
+}
+
+.Join--form input.full:focus + .indicator {
+  height: 3px;
+  color: white;
+}
+
+#recaptcha div {
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+#recaptcha-overlay{
+  position: absolute;
+  width: 304px;
+  height: 78px;
+  z-index: 2;
+  border: 5px solid #f9f9f9;
+  pointer-events: none;
+  border-radius: var(--borderRadius);
+}
+
+#verify-human {
+  margin: 1rem 0 1rem;
+  text-align: center;
+  width: 298px;
+}
+
+/* **************************************** */
+#city {
+  margin-top: 30px;
+  overflow: visible;
+}
+
+.chicago {
+  fill: none;
+  stroke: #9A5786;
+  stroke-dasharray: 7% 35%;
+  stroke-width: 3px;
+  animation: stroke-offset 9s linear;
+}
+.chicago:nth-child(1) {
+  stroke: #E8E4CE;
+  stroke-dashoffset: 7%;
+}
+.chicago:nth-child(2) {
+  stroke: #DBAB7F;
+  stroke-dashoffset: 14%;
+}
+.chicago:nth-child(3) {
+  stroke: #9A5786;
+  stroke-dashoffset: 21%;
+}
+.chicago:nth-child(4) {
+  stroke: #2F2547;
+  stroke-dashoffset: 28%;
+}
+.chicago:nth-child(5) {
+  stroke: #444786;
+  stroke-dashoffset: 35%;
+}
+.chicago:nth-child(6) {
+  stroke: #94B7C3 s;
+  stroke-dashoffset: 42%;
+}
+
+@keyframes stroke-offset {
+  50% {
+    stroke-dashoffset: 42%;
+    stroke-dasharray: 0 105%;
+  }
+}
+
+
+
+/********* JOIN FORM */
+/* ***************** */
+
+/* ********************* */
+body > section {
+  min-height: 300px;
+  &:nth-of-type(5) {
+    /* background-color: var(--highlightColor); */
+  }
+  &:nth-of-type(4) {
+    height: 300px;
+  }
+  &:nth-of-type(3) {
+    /* background-color: #f9f9f9; */
+    /* background-color: color(var(--highlightColor) hue(+10) saturation(-10) lightness(+60)); */
+  }
+  &:nth-of-type(2) {
+    /* background-color: color(var(--highlightColor) hue(-30) saturation(+0) lightness(+20)); */
+  }
+  &:nth-of-type(1) {
+    /* background-color: white; */
+  }
+}

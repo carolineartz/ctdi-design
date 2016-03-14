@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Hello, World!
+    block head-css
+      //link(href=htmlWebpackPlugin.files.css rel="stylesheet")
+    block head-js
+      script(src='https://www.google.com/recaptcha/api.js' async defer)
+      script(type='text/javascript').
+        function isHuman() {
+          var joinButton = document.getElementById("joinButton");
+          joinButton.style.display = "block";
+        }
+  body
+    block body
+
+    block body-js

@@ -1,0 +1,18 @@
+extends ./layouts/_base.jade
+
+block body
+  include ./partials/sections/_intro.jade
+  section.About
+  section.Join
+    .Join--slack
+      .Join--form
+        form(action='?', method='POST')
+          fieldset
+            div#enter-email
+              div.loader
+              input(type='email')
+              div.indicator(data-content="Type Your Email Address")
+            div#verify-human
+              div#recaptcha-overlay
+              div#recaptcha(class="g-recaptcha" data-callback="isHuman" data-sitekey="6LfMcxoTAAAAAJ4tBiXgOx3Z5bRpt0zL-Hp6Up7T")
+  section.Faq
