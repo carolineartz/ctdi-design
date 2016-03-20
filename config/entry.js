@@ -52,8 +52,8 @@ module.exports = {
     // getHtml('404', ['common', 'error'])
   ],
   css: [
-  new ExtractTextPlugin('css/index.css'),
-  new ExtractTextPlugin('css/morphing_buttons_component.css'),
-    new ExtractTextPlugin('css/sanitize.css')
+    // new ExtractTextPlugin('css/sanitize.css'),
+    // new ExtractTextPlugin('css/morphing_buttons_component.css'),
+    new ExtractTextPlugin('css/index.css')
   ]
 };

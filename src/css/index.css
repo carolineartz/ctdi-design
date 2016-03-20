@@ -12,8 +12,15 @@
 /* @import '../css/milligram.css'; */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+/* @import 'sanitize.css';
+@import 'morphing_buttons_component.css'; */
+
+
 /* @import 'content.css';
 @import 'demo.css'; */
+
+
 /*@use postcss-import;
 @use cssnext;
 @use postcss-simple-vars;
@@ -46,7 +53,6 @@
   --pure-black-alpha: rgba(19, 19, 19, .64);
   --pure-black-alpha-light: rgba(19, 19, 19, .24);
   --pure-black-alpha-transparent: rgba(19, 19, 19, .12);
-
   --darkestPurple: #1B1823;
   --primary: #d63c6b;
   --primary-dk: #c41c4f;
@@ -58,15 +64,15 @@
   --rosequartz: rgb(247, 202, 201);
   --serenity: rgb(146, 168, 209);
   --white: rgba(255, 255, 255, .5);
+  --green: #22b573;
+  --grey: #555;
+  --transitionSpeed: 200ms;
 }
 
 @font-face {
   font-family: "Flaticon";
   src: url("../fonts/Flaticon.eot");
-  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
-       url("../fonts/Flaticon.woff") format("woff"),
-       url("../fonts/Flaticon.ttf") format("truetype"),
-       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"), url("../fonts/Flaticon.woff") format("woff"), url("../fonts/Flaticon.ttf") format("truetype"), url("../fonts/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -78,33 +84,63 @@
   }
 }
 
-
-
-
-[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+[class^="flaticon-"]:before,
+[class*=" flaticon-"]:before,
+[class^="flaticon-"]:after,
+[class*=" flaticon-"]:after {
   font-family: Flaticon;
   font-size: 20px;
   font-style: normal;
   margin-left: 20px;
 }
 
-.flaticon-arrows:before { content: "\f100"; }
-.flaticon-arrows-1:before { content: "\f101"; }
-.flaticon-arrows-2:before { content: "\f102"; }
-.flaticon-arrows-3:before { content: "\f103"; }
-.flaticon-arrows-4:before { content: "\f104"; }
-.flaticon-circle:before { content: "\f105"; }
-.flaticon-circle-1:before { content: "\f106"; }
-.flaticon-circle-2:before { content: "\f107"; }
-.flaticon-close:before { content: "\f108"; }
-.flaticon-cross:before { content: "\f109"; }
-.flaticon-delete:before { content: "\f10a"; }
-.flaticon-shapes:before { content: "\f10b"; }
+.flaticon-arrows:before {
+  content: "\f100";
+}
 
+.flaticon-arrows-1:before {
+  content: "\f101";
+}
 
+.flaticon-arrows-2:before {
+  content: "\f102";
+}
 
+.flaticon-arrows-3:before {
+  content: "\f103";
+}
 
+.flaticon-arrows-4:before {
+  content: "\f104";
+}
+
+.flaticon-circle:before {
+  content: "\f105";
+}
+
+.flaticon-circle-1:before {
+  content: "\f106";
+}
+
+.flaticon-circle-2:before {
+  content: "\f107";
+}
+
+.flaticon-close:before {
+  content: "\f108";
+}
+
+.flaticon-cross:before {
+  content: "\f109";
+}
+
+.flaticon-delete:before {
+  content: "\f10a";
+}
+
+.flaticon-shapes:before {
+  content: "\f10b";
+}
 
 body {
   background-color: #F9F9F9;
@@ -248,6 +284,8 @@ strong {
 
 /*----------  Checkbox  ----------*/
 
+
+/*
 label.Checkbox {
   display: flex;
   align-items: center;
@@ -260,9 +298,10 @@ label.Checkbox {
 
 .Join-form .Checkbox-input {
   display: none;
-}
+} */
 
-.Checkbox-svg {
+
+/* .Checkbox-svg {
   margin-right: 1rem;
   overflow: visible !important;
 }
@@ -282,7 +321,7 @@ label.Checkbox {
   stroke-dasharray: 25 90;
   stroke-dashoffset: 0;
   transition: stroke .4s, stroke-dasharray .4s, stroke-dashoffset .4s cubic-bezier(.3, .8, .6, 1.5);
-}
+} */
 
 
 /*----------  Recaptcha  ----------*/
@@ -312,17 +351,22 @@ label.Checkbox {
   margin: 0 0 1rem;
   text-align: center;
   width: 298px;
+  display: none;
   @media (--small) {
     margin: 1rem auto;
   }
 }
 
+
 /* Terms */
+
+
 /* **************************************** */
 
 .Terms .btn {
   /* @mixin btn var(--darkestPurple), var(--tomato); */
 }
+
 
 /* **************************************** */
 
@@ -381,11 +425,11 @@ label.Checkbox {
   }
 }
 
-
 .no-overflow {
   overflow: hidden;
   position: fixed;
 }
+
 
 /********* JOIN FORM */
 
@@ -398,7 +442,7 @@ label.Checkbox {
 body > section {
   &:nth-of-type(4) {
     /* background-color: var(--highlightColor); */
-        height: 300px;
+    height: 300px;
   }
   &:nth-of-type(2) {
     height: 300px;
@@ -416,9 +460,14 @@ body > section {
 }
 
 
-
-
 /* ******************************* */
+
+.morph-button>button {
+  background: var(--darkestPurple);
+  color: color(var(--darkestPurple) lightness(+40));
+  font-weight: var(--fontWeight);
+
+}
 /* Overlay */
 
 .morph-button-overlay .morph-content {
@@ -447,24 +496,102 @@ body > section {
   }
 }
 
+.content-style-overlay > span.icon:before {
+  font-size: 40px;
+  position: absolute;
+  right: 30px;
+  top: 10px;
+}
 
+.toc-wrapper {
+  position: relative;
+  text-indent: -2em;
+  /* padding-bottom: 1.5em; */
+  margin-bottom: 2em !important;
+  @media (--small) {
+    line-height: 1em !important;
+  }
+}
 
+$purple: color(var(--darkestPurple) lightness(+40));
+$transitionSpeed: 200ms;
+input[type="checkbox"] + label {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid $purple;
+  left: 0;
+  transition: all ease-out $transitionSpeed;
+  text-indent: 40px;
+  white-space: nowrap;
+  user-select: none;
+  @media (--small) {
+    width: 15px;
+    height: 15px;
+    border: 1px solid $purple;
+    text-indent: 20px;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 15px;
+    border-bottom: 3px solid $purple;
+    border-left: 3px solid $purple;
+    bottom: 5px;
+    left: 50%;
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+    opacity: 0;
+    transition: all ease-out $transitionSpeed;
+    @media (--small) {
+      height: 10px;
+      border-bottom: 2px solid $purple;
+      border-left: 2px solid $purple;
+      bottom: 3px;
+    }
+  }
+}
 
+input[type="checkbox"]:checked + label {
+  border: 2px solid $purple;
+  @media (--small) {
+    border: 1px solid $purple;
+  }
+  &:after {
+    opacity: 1;
+    width: 40px;
+    @media (--small) {
+      width: 20px;
+    }
+  }
+}
+
+#coc {
+  display: none;
+}
 
 
 /* ********************************************* */
+
+
 /* Mixins */
 
+
 /* // Solid and Hollow buttons mixin by the @poopsplat */
-@define-mixin btn $background: var(--tomato), $color: white {
+
+@define-mixin btn $background: var(--tomato),
+$color: white {
   padding: 1em;
   line-height: 1em;
   display: inline-block;
   transition: border-color 0.2s ease-in-out, background 0.2s ease-in-out, color 0.2s ease-in-out;
-  border: 3px solid rgba(255,255,255,0);
+  border: 3px solid rgba(255, 255, 255, 0);
   color: $color;
   background: $background;
-  &:hover, &:focus, &:active {
+  &:hover,
+  &:focus,
+  &:active {
     color: $background;
     background: $color;
     border-color: $background;
@@ -473,12 +600,16 @@ body > section {
     background: none;
     color: $background;
     border: 3px solid $background;
-    &:hover, &:focus, &:active {
+    &:hover,
+    &:focus,
+    &:active {
       color: $color;
       background: $background;
     }
   }
 }
+
+
 /*
 
 .body--has-modal {

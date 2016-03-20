@@ -12,12 +12,6 @@ block body
               div.loader
               input(type='email')
               div.indicator(data-content="Email")
-            div#vefity-terms-conditions
-              label.Checkbox(for='check')
-                input#check.Checkbox-input(type='checkbox')
-                svg.Checkbox-svg(xmlns='http://www.w3.org/2000/svg', width='26px', height='23px')
-                  path.Checkbox-path(d='M24.192,3.813L11.818,16.188L1.5,6.021V2.451C1.5,2.009,1.646,1.5,2.3,1.5h18.4c0.442,0,0.8,0.358,0.8,0.801v18.398c0,0.442-0.357,0.801-0.8,0.801H2.3c-0.442,0-0.8-0.358-0.8-0.801V6')
-                | I have read and agree to the terms and conditions.
 
             div#verify-human
               div#recaptcha-overlay
@@ -27,13 +21,11 @@ block body
                 .container
                   section
                     .morph-button.morph-button-overlay.morph-button-fixed
-                      button(type='button') More Info
+                      button(type='button') Terms &amp; Conditions
                       .morph-content
                         div
                           .content-style-overlay
-                            span.icon.icon-close.flaticon-circle-1 Close the overlay
+                            span.icon.icon-close.flaticon-circle-1
                             include ./partials/_coc.jade
-                            put#terms(type='checkbox')
-                            label(for='terms') I accept the terms &amp; conditions.
 
   section.Faq
