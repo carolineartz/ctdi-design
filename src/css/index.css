@@ -496,11 +496,15 @@ body > section {
   }
 }
 
-.content-style-overlay > span.icon:before {
+.content-style-overlay {
+  max-width: 900px;
+  margin: 0 auto;
+  & > span.icon:before {
   font-size: 40px;
   position: absolute;
   right: 30px;
   top: 10px;
+  }
 }
 
 .toc-wrapper {

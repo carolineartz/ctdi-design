@@ -119,9 +119,9 @@ module.exports = {
   plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
-      new webpack.optimize.UglifyJsPlugin({
-        compress: { warnings: false },
-      }),
+      // new webpack.optimize.UglifyJsPlugin({
+      //   compress: { warnings: false },
+      // }),
       new CleanWebpackPlugin([folder.dist], {
         root: ROOT,
         verbose: false,
