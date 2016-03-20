@@ -1,25 +1,30 @@
 const path = require('path'),
   webpack = require('webpack'),
   ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  ModernizrWebpackPlugin = require('modernizr-webpack-plugin'),
   CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const folder = require('./config/folder');
 const entry = require('./config/entry');
+const ROOT = path.resolve(__dirname),
+  SRC = path.resolve(ROOT, folder.src),
+  DIST = path.resolve(ROOT, folder.dist);
 
-const autoprefixer = require('autoprefixer'),
+const postcssMixins = require('postcss-mixins'),
       postcssCssnext = require('postcss-cssnext'),
       postcssSimpleVars = require('postcss-simple-vars'),
       postcssNested = require('postcss-nested'),
       lost = require('lost'),
       postcssImport = require('postcss-import'),
-      postcssFor = require('postcss-for');
+      postcssFor = require('postcss-for'),
+      postcssResponsiveType = require('postcss-responsive-type'),
+      postcssPosition = require('postcss-position'),
+      postcssMediaMinmax = require('postcss-media-minmax'),
+      postcssCustomMedia = require('postcss-custom-media'),
+      postcssFontMagician = require('postcss-font-magician')({hosted: path.resolve(SRC, folder.fonts), });
 
+// const classie = require('classie');
 
-const ROOT = path.resolve(__dirname),
-  SRC = path.resolve(ROOT, folder.src),
-  DIST = path.resolve(ROOT, folder.dist);
-
-// const poststylus = require('poststylus');
 
 const grid = require('postcss-grid');
 const gridOptions = {
@@ -27,6 +32,7 @@ const gridOptions = {
   gutter: 20,
   legacy: false
 };
+
 
 
 const isProd = () => {
@@ -96,7 +102,18 @@ module.exports = {
   },
   postcss: function() {
     return {
-      defaults: [postcssImport, autoprefixer, postcssCssnext, postcssFor, postcssSimpleVars, postcssNested, lost]
+      defaults: [postcssMixins,
+                 postcssImport,
+                 postcssCssnext,
+                 postcssFor,
+                 postcssSimpleVars,
+                 postcssNested,
+                 lost,
+                 postcssResponsiveType,
+                 postcssPosition,
+                 postcssCustomMedia,
+                 postcssMediaMinmax,
+                 postcssFontMagician]
     }
   },
   plugins: [

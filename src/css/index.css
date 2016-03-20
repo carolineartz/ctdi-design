@@ -1,4 +1,3 @@
-
 /*
 @use postcss-write-svg;
 @use postcss-transform-shortcut;
@@ -9,69 +8,114 @@
 @use postcss-custom-media;
  */
 
-@import '../css/reset.css';
-@import '../css/milligram.css';
 
-@use postcss-import;
+/* @import '../css/milligram.css'; */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+/* @import 'content.css';
+@import 'demo.css'; */
+/*@use postcss-import;
 @use cssnext;
 @use postcss-simple-vars;
 @use postcss-nested;
-@use lost;
-
-
+@use lost;*/
 
 @lost gutter 40px;
 @lost flexbox flex;
-
+@custom-media --small (width <=420px);
+@custom-media --medium (width >=420px);
+@custom-media --large (width >=1280px);
 :root {
---fontSize: 1rem;
---fontWeight: 300;
---fontFamily: 'Lato';
---mainColor: #12345678;
---highlightColor: #4B5166; /* <-- change the color ! */
---fontSize: 1rem;
---marginUnit: .6rem;
+  --fontSize: 1rem;
+  --fontWeight: 300;
+  --fontWeightBold: 600;
+  --fontFamily: 'Open Sans';
+  --mainColor: #12345678;
+  --highlightColor: #4B5166;
+  /* <-- change the color ! */
+  --fontSize: 1rem;
+  --marginUnit: .6rem;
+  /* color palette :: https://coolors.co/app/d63c6b-5cc8ff-efefef-292f36-d6d6d6 */
+  --white: #efefef;
+  --white-alpha: rgba(239, 239, 239, .64);
+  --grey: #d6d6d6;
+  --gray: var(--grey);
+  --black: #292f36;
+  --tomato: #9A5786;
+  --pure-black: #131313;
+  --pure-black-alpha: rgba(19, 19, 19, .64);
+  --pure-black-alpha-light: rgba(19, 19, 19, .24);
+  --pure-black-alpha-transparent: rgba(19, 19, 19, .12);
 
-/* color palette :: https://coolors.co/app/d63c6b-5cc8ff-efefef-292f36-d6d6d6 */
---white: #efefef;
---white-alpha: rgba(239, 239, 239, .64);
---grey: #d6d6d6;
---gray: var(--grey);
---black: #292f36;
---tomato: #9A5786;
---pure-black: #131313;
---pure-black-alpha: rgba(19, 19, 19, .64);
---pure-black-alpha-light: rgba(19, 19, 19, .24);
---pure-black-alpha-transparent: rgba(19, 19, 19, .12);
-
---primary: #d63c6b;
---primary-dk: #c41c4f;
---accent: #5cc8ff;
---accent-dk: #00a3f5;
-
---transition: 300ms;
---easing: cubic-bezier(1, 1, 1, 1);
---borderRadius: 3px;
-
-
---rosequartz: rgb(247, 202, 201);
---serenity: rgb(146,168,209);
---white: rgba(255, 255, 255, .5);
+  --darkestPurple: #1B1823;
+  --primary: #d63c6b;
+  --primary-dk: #c41c4f;
+  --accent: #5cc8ff;
+  --accent-dk: #00a3f5;
+  --transition: 300ms;
+  --easing: cubic-bezier(1, 1, 1, 1);
+  --borderRadius: 3px;
+  --rosequartz: rgb(247, 202, 201);
+  --serenity: rgb(146, 168, 209);
+  --white: rgba(255, 255, 255, .5);
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  font-size: 16px; /* setting globally for rems */
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+
+
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+  font-family: Flaticon;
+  font-size: 20px;
+  font-style: normal;
+  margin-left: 20px;
+}
+
+.flaticon-arrows:before { content: "\f100"; }
+.flaticon-arrows-1:before { content: "\f101"; }
+.flaticon-arrows-2:before { content: "\f102"; }
+.flaticon-arrows-3:before { content: "\f103"; }
+.flaticon-arrows-4:before { content: "\f104"; }
+.flaticon-circle:before { content: "\f105"; }
+.flaticon-circle-1:before { content: "\f106"; }
+.flaticon-circle-2:before { content: "\f107"; }
+.flaticon-close:before { content: "\f108"; }
+.flaticon-cross:before { content: "\f109"; }
+.flaticon-delete:before { content: "\f10a"; }
+.flaticon-shapes:before { content: "\f10b"; }
+
+
+
+
 
 body {
   background-color: #F9F9F9;
   color: #5a5656;
   font-family: var(--fontFamily);
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: responsive;
+  font-weight: var(--fontWeight);
+}
+
+h2 {
+  font-size: responsive 18px 32px;
   font-weight: var(--fontWeight);
 }
 
@@ -80,56 +124,82 @@ body > section {
   overflow: hidden;
 }
 
+strong {
+  font-weight: var(--fontWeightBold);
+}
+
 .Intro {
   height: 100vh;
   width: 100%;
   background-size: contain;
+  background: var(--darkestPurple);
+  color: color(var(--darkestPurple) lightness(+30));
 }
 
 .Intro-text {
   lost-column: 9/12;
   lost-offset: -1.5/12;
+  strong {
+    color: color(var(--darkestPurple) lightness(+40));
+  }
+}
+
+.Intro-text h2 {
+  padding: 1em 0;
+}
+
+#logo-and-text {
+  position: absolute 2em 3em auto auto;
+  width: 150px;
 }
 
 
-/********* JOIN FORM */
-/* ***************** */
+/*=================================
+=            Join Form            =
+=================================*/
+
 .Join {
   background: var(--tomato);
 }
 
-.Join--form {
-  lost-column: 6/12;
-  lost-offset: -3/12;
+.Join-form {
+  @media (--medium) {
+    lost-column: 5/12;
+    lost-offset: -3.5/12;
+  }
 }
 
+
 /* // TODO: fixme */
+
 #enter-email {
   position: relative;
 }
 
-.Join--form form {
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 50%);
+.Join-form form {
+  @media (--medium) {
+    position: relative;
+  }
   display: block;
-  width: 450px;
 }
 
-.Join--form input {
-  line-height: 80px;
+.Join-form .Join-email {
+  margin-top: 70px;
+}
+
+.Join-form .Join-email input {
   width: 100%;
-  font-size: 24px;
-  padding: 0 20px;
+  font-family: var(--fontFamily);
+  font-size: responsive 15px 24px;
+  font-weight: var(--fontWeight);
+  color: transparent;
+  background: transparent;
+  padding: 10px 20px;
+  position: relative;
   border: none;
   cursor: pointer;
-  position: relative;
   z-index: 10;
-  background: transparent;
-  color: transparent;
-  font-weight: var(--fontWeight);
   transition: .3s all ease;
-  font-family: var(--fontFamily);
   &:focus {
     outline: none;
     color: var(--tomato);
@@ -137,16 +207,14 @@ body > section {
   }
 }
 
-.Join--form input.full {
-   pointer-events: none !important;
+.Join-form .Join-email input.full {
+  pointer-events: none !important;
   width: 0%;
 }
 
-.Join--form .indicator {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.Join-form .Join-email .indicator {
+  /*position: absolute ;*/
+  position: absolute auto 0 0;
   height: 3px;
   border-radius: var(--borderRadius);
   background: white;
@@ -155,12 +223,8 @@ body > section {
   font-family: var(--fontFamily);
   &:after {
     content: attr(data-content);
-    position: absolute;
-    top: -50px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    color:  color(var(--tomato) saturation(+30) blackness(+30));
+    position: absolute -50px 0 0 0;
+    color: color(var(--tomato) saturation(+30) blackness(+30));
     transition: inherit;
     font-size: 24px;
     z-index: 999;
@@ -168,8 +232,7 @@ body > section {
   }
 }
 
-
-.Join--form input:focus + .indicator {
+.Join-form .Join-email input:focus + .indicator {
   height: 100%;
   &:after {
     color: white;
@@ -177,18 +240,59 @@ body > section {
   }
 }
 
-.Join--form input.full:focus + .indicator {
+.Join-form .Join-email input.full:focus + .indicator {
   height: 3px;
   color: white;
 }
+
+
+/*----------  Checkbox  ----------*/
+
+label.Checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  font-weight: var(--fontWeight);
+  font-size: responsive 14px 18px;
+  padding-left: 10px;
+}
+
+.Join-form .Checkbox-input {
+  display: none;
+}
+
+.Checkbox-svg {
+  margin-right: 1rem;
+  overflow: visible !important;
+}
+
+.Checkbox-path {
+  fill: none;
+  stroke: white;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 110;
+  stroke-dashoffset: -32;
+}
+
+.Checkbox-input:checked + .Checkbox-svg .Checkbox-path {
+  stroke: white;
+  stroke-dasharray: 25 90;
+  stroke-dashoffset: 0;
+  transition: stroke .4s, stroke-dasharray .4s, stroke-dashoffset .4s cubic-bezier(.3, .8, .6, 1.5);
+}
+
+
+/*----------  Recaptcha  ----------*/
 
 #recaptcha div {
   margin: 0 auto;
   text-align: center;
 }
 
-
-#recaptcha-overlay{
+#recaptcha-overlay {
   position: absolute;
   width: 304px;
   height: 78px;
@@ -198,13 +302,30 @@ body > section {
   border-radius: var(--borderRadius);
 }
 
+#vefity-terms-conditions {
+  margin-top: 1rem;
+  padding: 10px;
+}
+
 #verify-human {
-  margin: 1rem 0 1rem;
+  padding: 10px;
+  margin: 0 0 1rem;
   text-align: center;
   width: 298px;
+  @media (--small) {
+    margin: 1rem auto;
+  }
+}
+
+/* Terms */
+/* **************************************** */
+
+.Terms .btn {
+  /* @mixin btn var(--darkestPurple), var(--tomato); */
 }
 
 /* **************************************** */
+
 #city {
   margin-top: 30px;
   overflow: visible;
@@ -212,37 +333,48 @@ body > section {
 
 .chicago {
   fill: none;
-  stroke: #9A5786;
+  stroke: #94B7C3;
   stroke-dasharray: 7% 35%;
   stroke-width: 3px;
-  animation: stroke-offset 9s linear;
+  animation: stroke-offset 12s 1 ease both;
 }
+
 .chicago:nth-child(1) {
   stroke: #E8E4CE;
   stroke-dashoffset: 7%;
 }
+
 .chicago:nth-child(2) {
   stroke: #DBAB7F;
   stroke-dashoffset: 14%;
 }
+
 .chicago:nth-child(3) {
   stroke: #9A5786;
+  /* stroke: #BD426A; */
   stroke-dashoffset: 21%;
 }
+
 .chicago:nth-child(4) {
   stroke: #2F2547;
   stroke-dashoffset: 28%;
 }
+
 .chicago:nth-child(5) {
   stroke: #444786;
   stroke-dashoffset: 35%;
 }
+
 .chicago:nth-child(6) {
   stroke: #94B7C3 s;
   stroke-dashoffset: 42%;
 }
 
 @keyframes stroke-offset {
+  0% {
+    stroke-dashoffset: 0 24%;
+    stroke-dasharray: 21% 42%;
+  }
   50% {
     stroke-dashoffset: 42%;
     stroke-dasharray: 0 105%;
@@ -250,17 +382,25 @@ body > section {
 }
 
 
+.no-overflow {
+  overflow: hidden;
+  position: fixed;
+}
 
 /********* JOIN FORM */
+
+
 /* ***************** */
 
+
 /* ********************* */
+
 body > section {
-  min-height: 300px;
-  &:nth-of-type(5) {
-    /* background-color: var(--highlightColor); */
-  }
   &:nth-of-type(4) {
+    /* background-color: var(--highlightColor); */
+        height: 300px;
+  }
+  &:nth-of-type(2) {
     height: 300px;
   }
   &:nth-of-type(3) {
@@ -274,3 +414,103 @@ body > section {
     /* background-color: white; */
   }
 }
+
+
+
+
+/* ******************************* */
+/* Overlay */
+
+.morph-button-overlay .morph-content {
+  background: var(--darkestPurple);
+  color: color(var(--darkestPurple) lightness(+40));
+  padding: 2em;
+  p {
+    font-size: responsive 14px 18px;
+    line-height: 1.4em;
+    margin-bottom: 1em;
+  }
+  ul {
+    margin-left: 2em;
+  }
+  li {
+    margin-bottom: .7em;
+  }
+  h2 {
+    font-weight: var(--fontWeightBold);
+    padding: 10px 0;
+  }
+  h3 {
+    font-size: 1.5em;
+    font-weight: var(--fontWeightBold);
+    margin-bottom: .3em;
+  }
+}
+
+
+
+
+
+
+/* ********************************************* */
+/* Mixins */
+
+/* // Solid and Hollow buttons mixin by the @poopsplat */
+@define-mixin btn $background: var(--tomato), $color: white {
+  padding: 1em;
+  line-height: 1em;
+  display: inline-block;
+  transition: border-color 0.2s ease-in-out, background 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: 3px solid rgba(255,255,255,0);
+  color: $color;
+  background: $background;
+  &:hover, &:focus, &:active {
+    color: $background;
+    background: $color;
+    border-color: $background;
+  }
+  &.-hollow {
+    background: none;
+    color: $background;
+    border: 3px solid $background;
+    &:hover, &:focus, &:active {
+      color: $color;
+      background: $background;
+    }
+  }
+}
+/*
+
+.body--has-modal {
+  overflow-y: scroll;
+}
+
+.wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.wrapper--no-scrollbar {
+  overflow: hidden;
+}
+ */
+
+
+/* @define-mixin icon $network, $color: blue {
+    .icon.is-$(network) {
+        color: $color;
+        @mixin-content;
+    }
+    .icon.is-$(network):hover {
+        color: white;
+        background: $color;
+    }
+}
+
+@mixin icon twitter {
+    background: url(twt.png);
+}
+@mixin icon youtube, red {
+    background: url(youtube.png);
+}
+ */
