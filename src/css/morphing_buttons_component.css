@@ -107,6 +107,7 @@
 }
 
 .morph-button-overlay .morph-content {
+	overflow: hidden;
 	background: #e85657;
 }
 

@@ -8,11 +8,15 @@
 @use postcss-custom-media;
  */
 
+/*@use postcss-mixins;
+@use postcss-simple-vars;
+@use postcss-nested;
+*/
 
 /* @import '../css/milligram.css'; */
 
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,700italic,400italic,500italic,300,300italic);
 /* @import 'sanitize.css';
 @import 'morphing_buttons_component.css'; */
 
@@ -25,12 +29,18 @@
 @use cssnext;
 @use postcss-simple-vars;
 @use postcss-nested;
-@use lost;*/
+*/
+@use lost;
+/* @lost gutter 60px; */
+/* @lost flexbox flex; */
+/* @lost cycle none; */
 
-@lost gutter 40px;
-@lost flexbox flex;
-@custom-media --small (width <=420px);
-@custom-media --medium (width >=420px);
+@custom-media --small (width <= 420px);
+@custom-media --medium (width >= 420px);
+@custom-media --mediumLarge (width <= 750px);
+/* @custom-media --mid2medium (  width >= 420px) and (width <= 750px); */
+/* @custom-media -- */
+@custom-media --mediumLargeUp (width >= 750px);
 @custom-media --large (width >=1280px);
 :root {
   --fontSize: 1rem;
@@ -67,7 +77,40 @@
   --green: #22b573;
   --grey: #555;
   --transitionSpeed: 200ms;
+  --paleBlue: #94B7C3;
 }
+
+/* // Solid and Hollow buttons mixin by the @poopsplat */
+
+@define-mixin buttons $background {
+  /* white: white; */
+  padding: .7em;
+  line-height: 1em;
+  display: inline-block;
+  transition: border-color 0.2s ease-in-out, background 0.2s ease-in-out, color 0.2s ease-in-out;
+  border: 3px solid rgba(255, 255, 255, 0);
+  color: white;
+  background: $background;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $background;
+    background: white;
+    border-color: $background;
+  }
+  &.-hollow {
+    background: none;
+    color: $background;
+    border: 3px solid $background;
+    &:hover,
+    &:focus,
+    &:active {
+      color: white;
+      background: $background;
+    }
+  }
+}
+
 
 @font-face {
   font-family: "Flaticon";
@@ -142,12 +185,23 @@
   content: "\f10b";
 }
 
+.bolder {
+  font-weight: 400;
+}
+
 body {
   background-color: #F9F9F9;
   color: #5a5656;
   font-family: var(--fontFamily);
   font-size: responsive;
   font-weight: var(--fontWeight);
+
+   /* lost-utility: edit; */
+}
+
+.MainContent {
+  @neat-outer-container;
+  /* @neat-show-grid; */
 }
 
 h2 {
@@ -156,7 +210,7 @@ h2 {
 }
 
 body > section {
-  lost-flex-container: column;
+  /* @neat-span-columns 12; */
   overflow: hidden;
 }
 
@@ -173,8 +227,8 @@ strong {
 }
 
 .Intro-text {
-  lost-column: 9/12;
-  lost-offset: -1.5/12;
+  @neat-span-columns 9;
+  @neat-shift 1.5;
   strong {
     color: color(var(--darkestPurple) lightness(+40));
   }
@@ -190,6 +244,96 @@ strong {
 }
 
 
+
+
+/*===================================
+=            FAQ SECTION            =
+===================================*/
+.FAQ {
+  lost-align: center;
+}
+
+.Accordion-wrapper {
+  height: 100%;
+  min-height: 400px;
+  lost-center: 1180px;
+  lost-flex-container: row;
+  padding-top: 2em;
+  @media (--mediumLargeUp) {
+    padding: 1em;
+  }
+  @media (--medium) and (--mediumLarge) {
+    padding: 2em;
+  }
+  @media (--small) {
+    padding: 1em;
+  }
+}
+
+.Accordion {
+  lost-waffle: 1/3 column;
+
+  .Accordion-question {
+    color: color(var(--tomato) lightness(+40));
+    padding: 1em;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    font-weight: 400;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .Accordion-answer {
+    transition: all 200ms ease;
+    background: color(#d8bcd0 alpha(-40%));
+    padding: 1em;
+    margin-top: 1em;
+    p {
+      margin-bottom: 1em;
+    }
+
+    li {
+      margin-left: 1em;
+    }
+  }
+  @media (--medium) and (--mediumLarge) {
+    lost-waffle: 1/2 column;
+  }
+  @media (--small) {
+    lost-waffle: 1/1;
+  }
+}
+
+
+
+.Accordion {
+  .Accordion-question {
+    background: color(var(--tomato) lightness(-20) saturation(+20));
+  }
+  .Accordion-answer {
+    overflow: hidden;
+    max-height: 500px;
+    height: auto;
+    opacity: 1
+  }
+}
+
+.Accordion.closed {
+  .Accordion-question {
+    background: var(--tomato);
+  }
+  .Accordion-answer {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+
+/*=====  End of FAQ SECTION  ======*/
+
+
+
+
 /*=================================
 =            Join Form            =
 =================================*/
@@ -199,9 +343,25 @@ strong {
 }
 
 .Join-form {
+  #enter-email {
+    margin: 60px auto 20px;
+    max-width: 300px;
+  }
+  fieldset {
+    padding-bottom: 20px;
+  }
   @media (--medium) {
-    lost-column: 5/12;
-    lost-offset: -3.5/12;
+    /* lost-column: 12/12; */
+    @neat-span-columns 12;
+    #enter-email {
+      max-width: 400px;
+      margin: 60px auto 20px;
+    }
+  }
+  @media (--mediumLarge) {
+    /* @neat-span-column */
+/*     lost-column: 11/12;
+    lost-offset: -0.5/12; */
   }
 }
 
@@ -228,7 +388,8 @@ strong {
   font-family: var(--fontFamily);
   font-size: responsive 15px 24px;
   font-weight: var(--fontWeight);
-  color: transparent;
+  /* color: transparent; */
+  color: var(--tomato);
   background: transparent;
   padding: 10px 20px;
   position: relative;
@@ -285,44 +446,6 @@ strong {
 /*----------  Checkbox  ----------*/
 
 
-/*
-label.Checkbox {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  color: white;
-  font-weight: var(--fontWeight);
-  font-size: responsive 14px 18px;
-  padding-left: 10px;
-}
-
-.Join-form .Checkbox-input {
-  display: none;
-} */
-
-
-/* .Checkbox-svg {
-  margin-right: 1rem;
-  overflow: visible !important;
-}
-
-.Checkbox-path {
-  fill: none;
-  stroke: white;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 110;
-  stroke-dashoffset: -32;
-}
-
-.Checkbox-input:checked + .Checkbox-svg .Checkbox-path {
-  stroke: white;
-  stroke-dasharray: 25 90;
-  stroke-dashoffset: 0;
-  transition: stroke .4s, stroke-dasharray .4s, stroke-dashoffset .4s cubic-bezier(.3, .8, .6, 1.5);
-} */
-
 
 /*----------  Recaptcha  ----------*/
 
@@ -339,6 +462,9 @@ label.Checkbox {
   border: 5px solid #f9f9f9;
   pointer-events: none;
   border-radius: var(--borderRadius);
+  @media (--small) {
+    left: 10px;
+  }
 }
 
 #vefity-terms-conditions {
@@ -348,13 +474,20 @@ label.Checkbox {
 
 #verify-human {
   padding: 10px;
-  margin: 0 0 1rem;
+  margin: 0 auto;
+  position: relative;
   text-align: center;
-  width: 298px;
   display: none;
+  width: 324px;
   @media (--small) {
     margin: 1rem auto;
+    padding: 0;
   }
+}
+
+.morph-button-fixed,
+.morph-button-fixed .morph-content {
+  height: 60px;
 }
 
 
@@ -363,8 +496,15 @@ label.Checkbox {
 
 /* **************************************** */
 
-.Terms .btn {
+.Terms {
   /* @mixin btn var(--darkestPurple), var(--tomato); */
+  color: color(var(--tomato) saturation(+30) blackness(+30));
+  /* color: var(--darkestPurple); */
+  section span {
+    text-align: center;
+    font-size: responsive 20px 24px;
+    display: block;
+  }
 }
 
 
@@ -434,6 +574,49 @@ label.Checkbox {
 /********* JOIN FORM */
 
 
+/*=====================================
+=            About section            =
+=====================================*/
+
+.About {
+  background-color: var(--paleBlue);
+  color: color(var(--paleBlue) saturation(+85) blackness(+50));
+  font-size: responsive 18px 24px;
+  line-height: 1.3em;
+  .About-container {
+    @neat-span-columns 9;
+    @neat-shift 1.5;
+    /* lost-center: 1140px 30px flex; */
+    padding: 2em;
+  }
+  .About-text {
+    @neat-span-columns 6 9;
+    /* lost-center: 1140px 30px flex; */
+
+    div {
+      margin-bottom: 1em;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .About-slack {
+    @neat-span-columns 3 9;
+    @neat-omega;
+    .svg-container svg {
+      padding: 2em 0;
+      max-height: 300px;
+    }
+    path, rect {
+      fill: color(var(--paleBlue) saturation(+85) blackness(+50));
+    }
+  }
+}
+
+/*=====  End of About section  ======*/
+
+
+
 /* ***************** */
 
 
@@ -442,10 +625,10 @@ label.Checkbox {
 body > section {
   &:nth-of-type(4) {
     /* background-color: var(--highlightColor); */
-    height: 300px;
+    /* height: 300px; */
   }
   &:nth-of-type(2) {
-    height: 300px;
+    /* height: 300px; */
   }
   &:nth-of-type(3) {
     /* background-color: #f9f9f9; */
@@ -466,14 +649,46 @@ body > section {
   background: var(--darkestPurple);
   color: color(var(--darkestPurple) lightness(+40));
   font-weight: var(--fontWeight);
-
 }
+
+.morph-button-fixed > button {
+  border-radius: 2px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+  line-height: 1;
+  letter-spacing: normal;
+  cursor: pointer;
+  text-transform: none;
+  font-size: responsive 14px 18px;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+}
+
+.morph-button-fixed,
+.morph-button-fixed .morph-content {
+  display: block;
+  @media (--medium) {
+    /* width: 200px; */
+  }
+}
+
+.morph-button.morph-button-overlay {
+  margin: 20px auto;
+  @media (--medium) {
+    /* width: 200px; */
+  }
+}
+
+
 /* Overlay */
 
 .morph-button-overlay .morph-content {
   background: var(--darkestPurple);
   color: color(var(--darkestPurple) lightness(+40));
-  padding: 2em;
+  padding: 0 2em 2em;
   p {
     font-size: responsive 14px 18px;
     line-height: 1.4em;
@@ -500,21 +715,24 @@ body > section {
   max-width: 900px;
   margin: 0 auto;
   & > span.icon:before {
-  font-size: 40px;
-  position: absolute;
-  right: 30px;
-  top: 10px;
+    font-size: 40px;
+    position: absolute;
+    right: 30px;
+    top: 10px;
   }
 }
 
 .toc-wrapper {
   position: relative;
   text-indent: -2em;
-  /* padding-bottom: 1.5em; */
   margin-bottom: 2em !important;
   @media (--small) {
     line-height: 1em !important;
   }
+}
+
+.morph-button-overlay .morph-content {
+  overflow: visible;
 }
 
 $purple: color(var(--darkestPurple) lightness(+40));
@@ -575,43 +793,32 @@ input[type="checkbox"]:checked + label {
   display: none;
 }
 
+.btn {
+  @mixin buttons;
+  font-size: responsive 16px 18px;
+  a {
+
+    color: var(--paleBlue);
+  }
+}
+
 
 /* ********************************************* */
 
 
 /* Mixins */
-
-
-/* // Solid and Hollow buttons mixin by the @poopsplat */
-
-@define-mixin btn $background: var(--tomato),
-$color: white {
-  padding: 1em;
-  line-height: 1em;
-  display: inline-block;
-  transition: border-color 0.2s ease-in-out, background 0.2s ease-in-out, color 0.2s ease-in-out;
-  border: 3px solid rgba(255, 255, 255, 0);
-  color: $color;
-  background: $background;
-  &:hover,
-  &:focus,
-  &:active {
-    color: $background;
-    background: $color;
-    border-color: $background;
-  }
-  &.-hollow {
-    background: none;
-    color: $background;
-    border: 3px solid $background;
-    &:hover,
-    &:focus,
-    &:active {
-      color: $color;
-      background: $background;
+@define-mixin icon $name {
+    padding-left: 16px;
+    &::after {
+        content: "";
+        background: blue;
     }
-  }
 }
+
+.search {
+    @mixin icon search;
+}
+
 
 
 /*

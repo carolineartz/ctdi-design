@@ -21,17 +21,18 @@ const postcssMixins = require('postcss-mixins'),
       postcssPosition = require('postcss-position'),
       postcssMediaMinmax = require('postcss-media-minmax'),
       postcssCustomMedia = require('postcss-custom-media'),
+      postcssNeat = require('postcss-neat'),
       postcssFontMagician = require('postcss-font-magician')({hosted: path.resolve(SRC, folder.fonts), });
 
 // const classie = require('classie');
 
 
-const grid = require('postcss-grid');
-const gridOptions = {
-  columns: 12,
-  gutter: 20,
-  legacy: false
-};
+// const grid = require('postcss-grid');
+// const gridOptions = {
+//   columns: 12,
+//   gutter: 20,
+//   legacy: false
+// };
 
 
 
@@ -102,17 +103,18 @@ module.exports = {
   },
   postcss: function() {
     return {
-      defaults: [postcssMixins,
-                 postcssImport,
+      defaults: [postcssImport,
+                 postcssMixins,
                  postcssCssnext,
+                 lost,
                  postcssFor,
                  postcssSimpleVars,
                  postcssNested,
-                 lost,
                  postcssResponsiveType,
                  postcssPosition,
                  postcssCustomMedia,
                  postcssMediaMinmax,
+                 postcssNeat,
                  postcssFontMagician]
     }
   },

@@ -1,31 +1,11 @@
 extends ./layouts/_base.jade
 
 block body
-  include ./partials/sections/_intro.jade
+  section.Intro
+    include ./partials/sections/_intro.jade
   section.About
-  section.Join
-    .Join-slack
-      .Join-form
-        form(action='?', method='POST')
-          fieldset
-            div.Join-email#enter-email
-              div.loader
-              input(type='email')
-              div.indicator(data-content="Email")
-
-            div#verify-human
-              div#recaptcha-overlay
-              div#recaptcha(class="g-recaptcha" data-callback="isHuman" data-sitekey="6LfMcxoTAAAAAJ4tBiXgOx3Z5bRpt0zL-Hp6Up7T")
-            div#terms
-              div.Terms
-                .container
-                  section
-                    .morph-button.morph-button-overlay.morph-button-fixed
-                      button(type='button') Terms &amp; Conditions
-                      .morph-content
-                        div
-                          .content-style-overlay
-                            span.icon.icon-close.flaticon-circle-1
-                            include ./partials/_coc.jade
-
+    include ./partials/sections/_about.jade
   section.Faq
+    include ./partials/sections/_faq.jade
+  section.Join
+    include ./partials/sections/_join.jade
