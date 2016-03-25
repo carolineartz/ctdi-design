@@ -6,6 +6,9 @@ html(lang="en")
     block head-css
       //link(href=htmlWebpackPlugin.files.css rel="stylesheet")
     block head-js
+      script(src='https://use.typekit.net/aba1yps.js')
+      script(type='text/javascript').
+        try{Typekit.load({ async: true });}catch(e){}
       script(src='https://www.google.com/recaptcha/api.js' async defer)
       script(type='text/javascript').
         function isHuman() {

@@ -31,14 +31,15 @@ const getHtml = (file, jsEntryArr) => {
     })
 };
 
-const indexModernizd = getHtml('index', 'classie', "uiMorphingButton_fixed");
+const indexModernizd = getHtml('index', 'morphingButton', 'classie', 'uiMorphingButton_fixed');
 const indexHtml = getHtml('index', [ 'common', 'classie', 'uiMorphingButton_fixed', 'index']);
 
 module.exports = {
   js: {
     index: getJs('index.js'),
     classie: getJs('vendor/classie.js'),
-    uiMorphingButton_fixed: getJs('vendor/uiMorphingButton_fixed.js')
+    uiMorphingButton_fixed: getJs('vendor/uiMorphingButton_fixed.js'),
+    morphingButton: getJs('morphingButton.js')
     // error: getJs('error.js'),
     // nodeList: getJs('vendor/NodeList.js'),
 

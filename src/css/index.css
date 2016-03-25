@@ -41,12 +41,17 @@
 /* @custom-media --mid2medium (  width >= 420px) and (width <= 750px); */
 /* @custom-media -- */
 @custom-media --mediumLargeUp (width >= 750px);
+@custom-media --1080low (width <= 1080px);
+@custom-media --1200low (width <= 1200px);
 @custom-media --large (width >=1280px);
 :root {
   --fontSize: 1rem;
   --fontWeight: 300;
   --fontWeightBold: 600;
-  --fontFamily: 'Open Sans';
+  --fontFamily: 'Roboto';
+  /* --fontFamily: 'Roboto'; */
+  --fontFamily: "freight-sans-pro";
+  --fontFamilyFenwick: "fenwick";
   --mainColor: #12345678;
   --highlightColor: #4B5166;
   /* <-- change the color ! */
@@ -204,9 +209,17 @@ body {
   /* @neat-show-grid; */
 }
 
+h1, h2, h3 {
+  font-family: "fenwick";
+  }
+
 h2 {
-  font-size: responsive 18px 32px;
-  font-weight: var(--fontWeight);
+  font-size: responsive 18px 34px;
+  /*font-weight: var(--fontWeight);*/
+  font-weight: 400;
+  strong {
+    font-weight: 700;
+  }
 }
 
 body > section {
@@ -249,11 +262,78 @@ strong {
 /*===================================
 =            FAQ SECTION            =
 ===================================*/
-.FAQ {
-  lost-align: center;
+.Faq {
+  /* lost-align: center; */
+  /* max-height: 800px; */
+    padding: 2em 0;
 }
 
-.Accordion-wrapper {
+.Faq-wrapper {
+
+  @neat-span-columns 10;
+  @neat-shift 1;
+  /* padding: 2em; */
+/*   -moz-column-width: 13em;
+  -webkit-column-width: 13em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em; */
+  columns: auto 3;
+  column-gap: 2.5em;
+
+  @media (--1200low) {
+    @neat-span-columns 11;
+    @neat-shift 0.5;
+  }
+
+  @media (--1080low) {
+    columns: auto 2;
+  }
+  @media (--mediumLarge) {
+    columns: auto 1;
+  }
+
+}
+
+.Faq-item {
+  display: inline-block;
+  margin-bottom: 1.5em;
+  /* margin: 0.25rem; */
+  /* padding: 1rem; */
+  width: 100%;
+  p {
+    margin-bottom: 1em;
+  }
+  li {
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+    b {
+      font-weight: 600;
+    }
+  }
+}
+
+.Faq-question {
+  font-family: var(--fontFamilyFenwick);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: .5em;
+}
+
+.Faq-answer {
+  font-size: responsive 15px 17px;
+  padding: .3em;
+}
+
+
+
+
+
+
+
+
+
+
+/* .Accordion-wrapper {
   height: 100%;
   min-height: 400px;
   lost-center: 1180px;
@@ -327,7 +407,7 @@ strong {
     opacity: 0;
   }
 }
-
+ */
 
 /*=====  End of FAQ SECTION  ======*/
 
