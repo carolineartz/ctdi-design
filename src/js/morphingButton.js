@@ -38,9 +38,5 @@ export default class MorphingButton {
     }
 
     this.isAnimating = true;
-
-
-
-
   }
 }
