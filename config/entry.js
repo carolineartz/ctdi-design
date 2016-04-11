@@ -40,21 +40,12 @@ module.exports = {
     classie: getJs('vendor/classie.js'),
     uiMorphingButton_fixed: getJs('vendor/uiMorphingButton_fixed.js'),
     morphingButton: getJs('morphingButton.js')
-    // error: getJs('error.js'),
-    // nodeList: getJs('vendor/NodeList.js'),
-
   },
   html: [
     indexHtml,
     new ModernizrWebpackPlugin(modernizrOption,indexModernizd)
-
-
-    // getHtml('directory/subpage', ['common']),
-    // getHtml('404', ['common', 'error'])
   ],
   css: [
-    // new ExtractTextPlugin('css/sanitize.css'),
-    // new ExtractTextPlugin('css/morphing_buttons_component.css'),
     new ExtractTextPlugin('css/index.css')
   ]
 };

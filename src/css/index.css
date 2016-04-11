@@ -1,6 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700);
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,700italic,400italic,500italic,300,300italic);
-@import url('./fonts.css');
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+
 @custom-media --small (width <=420px);
 @custom-media --medium (width >=420px);
 @custom-media --mediumLarge (width <=750px);
@@ -11,56 +10,18 @@
 @custom-media --short (height <= 650px);
 
 :root {
-  --fontSize: 1rem;
   --fontWeight: 300;
   --fontWeightBold: 500;
-  /*--fontFamily: 'BikoLight';*/
-  --fontFamily: 'Epitet-Light';
-  --fontFamily: 'Radikal-Thin';
-  /*--fontFamily: 'KanaSans-Light';*/
-  --fontFamilyMono: "Everson Mono";
-  --fontFamilyMono: "Big John";
-  --fontFamilyMono: "Knul-Bold";
-  --fontFamilyMono: 'Radikal-Thin';
-  --fontFamilyMono: 'Lato';
   --fontFamily: 'Lato';
-  --mainColor: #12345678;
-  --highlightColor: #4B5166;
-  --fontSize: 1rem;
-  --marginUnit: .6rem;
-  --white: #f9f9f9;
-  --white-alpha: rgba(239, 239, 239, .64);
-  --grey: #d6d6d6;
-  --gray: var(--grey);
   --black: #292f36;
   --tomato: #9A5786;
-  --pure-black: #131313;
-  --pure-black-alpha: rgba(19, 19, 19, .64);
-  --pure-black-alpha-light: rgba(19, 19, 19, .24);
-  --pure-black-alpha-transparent: rgba(19, 19, 19, .12);
-  --darkestPurple: #1B1823;
   --darkestPurple: #353044;
-  --primary: #d63c6b;
-  --primary-dk: #c41c4f;
-  --accent: #5cc8ff;
-  --accent-dk: #00a3f5;
+  --paleBlue: #94B7C3;
   --transition: 300ms;
   --easing: cubic-bezier(1, 1, 1, 1);
   --borderRadius: 3px;
-  --rosequartz: rgb(247, 202, 201);
-  --serenity: rgb(146, 168, 209);
-  --white: rgba(255, 255, 255, .5);
-  --green: #22b573;
-  --grey: #555;
   --transitionSpeed: 200ms;
-  --paleBlue: #94B7C3;
 }
-
-
-/* @define-mixin link $background-color $color {
-
-} */
-
 
 /* // Solid and Hollow buttons mixin by the @poopsplat */
 
@@ -107,12 +68,7 @@ body {
 
 .MainContent {
   @neat-outer-container;
-  /* @neat-show-grid; */
 }
-
-h1,
-h2,
-h3 {}
 
 h2 {
   font-size: responsive 18px 44px;
@@ -131,12 +87,9 @@ strong {
 }
 
 .channel {
-  font-family: var(--fontFamilyMono);
+  font-family: var(--fontFamily);
   color: color(#5a5656 blackness(+10));
 }
-
-
-/* #ef8b80; */
 
 u {
   text-decoration: none;
@@ -152,7 +105,7 @@ u {
 }
 
 .Intro-text {
-  font-family: var(--fontFamilyMono);
+  font-family: var(--fontFamily);
 
   @neat-span-columns 9;
   @neat-shift 1.5;
@@ -201,23 +154,16 @@ u {
     text-decoration: none;
     font-family: var(--fontFamilyBolder);
     color: var(--linkColor);
-    /*  shadows render better in certain browsers than text, first rule is for older browser support  */
     color: transparent;
     text-shadow: 0 0 var(--linkColor), .08em 0 0 var(--linkBg), 0 0, -.08em 0 0 var(--linkBg);
-    /*  gradient background allows us to use css only & re-position it  */
     background: -webkit-linear-gradient(var(--linkColor), var(--linkColor)) center .99em no-repeat;
     background: linear-gradient(var(--linkColor), var(--linkColor)) center .99em no-repeat;
-    /*  can precisely control size in relation to the text  */
     background-size: 98% 1.5px;
-    /* text-shadow:  */
-    /* border-bottom: 1.5px solid var(--linkColor); */
     &:first-letter {
-      /* text-shadow: none; */
     }
     &:hover {
       color: color(var(--linkColor) blackness(+14) saturation(+10));
       border-bottom-color: color(var(--linkColor) blackness(+14) saturation(+10));
-      /* box-shadow: inset 0 -2px 0 color(var(--linkColor) lightness(+10) saturation(+20)); */
     }
   }
 }
@@ -251,14 +197,13 @@ u {
     margin-bottom: 1em;
     b {
       font-weight: 500;
-      font-family: var(--fontFamilyMono);
+      font-family: var(--fontFamily);
     }
   }
 }
 
 .Faq-question {
-  font-family: var(--fontFamilyMono);
-  /*text-transform: uppercase;*/
+  font-family: var(--fontFamily);
   font-weight: var(--fontWeightBold);
   font-size: responsive 15px 19px;
   line-height: 1.55em;
@@ -306,7 +251,6 @@ u {
 }
 
 
-/* // TODO: fixme */
 
 #enter-email {
   position: relative;
@@ -510,7 +454,7 @@ u {
 }
 
 .featured {
-  font-family: var(--fontFamilyMono);
+  font-family: var(--fontFamily);
 }
 
 .larger {
@@ -526,10 +470,8 @@ u {
 =====================================*/
 
 .About {
-  /*background-color: var(--paleBlue);*/
   background-color: var(--darkestPurple);
   color: color(var(--darkestPurple) lightness(+30));
-  /*color: color(var(--paleBlue) saturation(+85) blackness(+50));*/
   font-size: responsive 18px 24px;
   line-height: 1.3em;
   .About-container {
@@ -540,9 +482,6 @@ u {
     &.row {
       @neat-row;
     }
-    /*@neat-span-columns 6 9;*/
-    /* font-family: var(--fontFamilyMono); */
-    /*font-weight: 400;*/
     > div {
       @neat-shift 1.5;
       @neat-span-columns 9;
@@ -557,6 +496,9 @@ u {
     text-align: center;
     margin-top: 1em;
     margin-bottom: 1em;
+    @media(--small) {
+      font-size: 1.5em;
+    }
   }
   .About-slack {
     @neat-row;
@@ -579,10 +521,23 @@ u {
         text-align: left;
       }
       @neat-span-columns 3;
+      @media(--mediumLarge) {
+        &:first-child, &:nth-child(2), &:nth-child(3) {
+          @neat-span-columns 12;
+          @neat-shift 0;
+          text-align: center !important;
+          @neat-omega;
+          height: auto;
+          line-height: 1.5em;
+        }
+      }
     }
   }
 
   #slack-logo {
+    @media(--mediumLarge) {
+      width: 60px;
+    }
     max-width: 150px;
   }
 
@@ -600,11 +555,8 @@ u {
 /*=====  End of About section  ======*/
 
 .morph-button>button {
-  /*background: var(--darkestPurple);*/
   color: color(var(--tomato) blackness(+10));
-  /*font-weight: var(--fontWeight);*/
   font-weight: 400;
-  /*background: color(var(--tomato) lightness(+30) saturation(-10));*/
   background: color(var(--tomato) saturation(-5) lightness(+15));
 }
 
@@ -640,7 +592,6 @@ u {
 
 .morph-button-overlay .morph-content {
   background: color(var(--tomato) lightness(+45) saturation(-10));
-  /*background: var(--darkestPurple);*/
   color: color(var(--darkestPurple) lightness(+40));
   padding: 0 2em 2em;
   p {
